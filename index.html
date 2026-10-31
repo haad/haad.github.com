@@ -20,6 +20,7 @@
       --card: #ffffff;
       --accent: #2f6f4e;
       --accent-text: #2f6f4e;
+      --coral: #d9573f;
       --cta-bg: #eef6ea;
       color-scheme: light dark;
     }
@@ -32,6 +33,7 @@
         --card: #1d252a;
         --accent: #ddfb86;
         --accent-text: #ddfb86;
+        --coral: #ec705f;
         --cta-bg: #1f2a22;
       }
     }
@@ -82,9 +84,20 @@
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.01em;
-      margin: 0 0 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--line);
+      color: var(--fg);
+      margin: 0 0 22px;
+      padding-bottom: 12px;
+      position: relative;
+    }
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 56px;
+      height: 3px;
+      background: var(--coral);
+      border-radius: 2px;
     }
     .cta {
       padding: 36px 40px;
@@ -149,24 +162,66 @@
     .project span { color: var(--muted); flex: 1; }
     .project small { margin-top: 12px; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; }
 
-    /* Talks, press, slides, writing: two-column entry lists */
-    .entries {
+    /* Talks, press, slides, writing: dated rows with a type tag */
+    .timeline li {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 14px 40px;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 4px 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
     }
-    .entries li { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-    .entries a { color: var(--fg); font-weight: 600; text-decoration: none; }
-    .entries a:hover, .entries a:focus-visible { color: var(--accent); }
-    .entries span {
-      display: block;
+    .timeline li:last-child { border-bottom: 1px solid var(--line); }
+    .timeline .year {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
       color: var(--muted);
+      padding-top: 4px;
+    }
+    .timeline .title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      line-height: 1.35;
+      color: var(--fg);
+      text-decoration: none;
+      text-wrap: balance;
+    }
+    .timeline .title:hover, .timeline .title:focus-visible { color: var(--accent-text); outline: none; }
+    .timeline .meta {
+      grid-column: 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
       font-family: var(--mono);
       font-size: 0.8rem;
-      margin-top: 2px;
+      color: var(--muted);
     }
-    .entries span a { font-weight: 400; color: var(--muted); text-decoration: underline; }
-    .empty { color: var(--muted); font-style: italic; }
+    .timeline .meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+    .timeline .meta a:hover { color: var(--accent-text); }
+    .tag {
+      display: inline-block;
+      padding: 1px 7px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--fg);
+      background: var(--card);
+    }
+    .tag-live { border-color: var(--accent); color: var(--accent-text); background: transparent; }
+    .timeline.compact { columns: 2; column-gap: 40px; }
+    .timeline.compact li { break-inside: avoid; padding: 12px 0; }
+    .timeline.compact .title { font-size: 1rem; }
+    @media (max-width: 720px) {
+      .timeline.compact { columns: 1; }
+      .timeline li { grid-template-columns: 1fr; gap: 2px; }
+      .timeline .year { padding-top: 0; }
+      .timeline .meta { grid-column: 1; }
+    }
+    .timeline .empty { display: block; color: var(--muted); font-style: italic; }
 
     footer {
       margin-top: 64px;
@@ -261,80 +316,93 @@
 
     <section>
       <h2>Talks &amp; podcasts</h2>
-      <ul class="entries">
+      <ul class="timeline">
         <li>
-          <a href="https://ocamihr.podbean.com/e/97-ako-sa-zije-v-no-bullshit-culture/">Ako sa žije (v) No Bullshit Culture</a>
-          <span>Očami HR podcast, #97 · Oct 2026</span>
+          <span class="year">2026</span>
+          <a class="title" href="https://ocamihr.podbean.com/e/97-ako-sa-zije-v-no-bullshit-culture/">Ako sa žije (v) No Bullshit Culture</a>
+          <span class="meta"><span class="tag">Podcast</span> Očami HR, episode 97 · Oct 2026</span>
         </li>
         <li>
-          <a href="https://nobullshit.camp/">#nobullshit.camp 2026, opening</a>
-          <span>Cloud &amp; DevOps conference by Labyrinth Labs, Nová Cvernovka, Bratislava · Sep 2026</span>
+          <span class="year">2026</span>
+          <a class="title" href="https://nobullshit.camp/">#nobullshit.camp 2026, opening</a>
+          <span class="meta"><span class="tag tag-live">Keynote</span> Cloud &amp; DevOps conference by Labyrinth Labs · Nová Cvernovka, Bratislava · Sep 2026</span>
         </li>
         <li>
-          <a href="https://www.stream.cz/rozhovory-o-robotice/firma-bez-investoru-vyrostla-na-30-lidi-klicem-bylo-prestat-prodavat-hodiny-prace-rika-adam-hamsik-65536587">Firma bez investorů vyrostla na 30 lidí. Klíčem bylo přestat prodávat hodiny práce</a>
-          <span>FocusOn rozhovory with Jiří Jemelka, Stream.cz · Jul 2026</span>
+          <span class="year">2026</span>
+          <a class="title" href="https://www.stream.cz/rozhovory-o-robotice/firma-bez-investoru-vyrostla-na-30-lidi-klicem-bylo-prestat-prodavat-hodiny-prace-rika-adam-hamsik-65536587">Firma bez investorů vyrostla na 30 lidí. Klíčem bylo přestat prodávat hodiny práce</a>
+          <span class="meta"><span class="tag">Video interview</span> FocusOn rozhovory with Jiří Jemelka · Stream.cz · Jul 2026</span>
         </li>
         <li>
-          <a href="https://community2.cncf.io/events/details/cncf-kcd-czech-slovak-presents-kcd-kubernetes-community-days-2022-czech-slovak-virtual/">Kubernetes Community Days Czech &amp; Slovak 2022</a>
-          <span>Speaker and panelist, virtual · Apr 2022</span>
+          <span class="year">2022</span>
+          <a class="title" href="https://community2.cncf.io/events/details/cncf-kcd-czech-slovak-presents-kcd-kubernetes-community-days-2022-czech-slovak-virtual/">Kubernetes Community Days Czech &amp; Slovak 2022</a>
+          <span class="meta"><span class="tag tag-live">Talk</span> Speaker and panelist · virtual · Apr 2022</span>
         </li>
         <li>
-          <a href="https://www.youtube.com/watch?v=AZuMLZfaW58">Čo je CI/CD proces a prečo ho vo firme chcete</a>
-          <span>Tech Talks with Fero Volár, YouTube · May 2021</span>
+          <span class="year">2021</span>
+          <a class="title" href="https://www.youtube.com/watch?v=AZuMLZfaW58">Čo je CI/CD proces a prečo ho vo firme chcete</a>
+          <span class="meta"><span class="tag">Video</span> Tech Talks with Fero Volár · YouTube · May 2021</span>
         </li>
         <li>
-          <a href="https://www.youtube.com/watch?v=KrHqxKvpf3k">Kubernetes a Cloud native v praxi</a>
-          <span>Websupport podcast with Fero Volár · Nov 2020 ·
-          <a href="https://www.websupport.sk/blog/2020/11/podcast-kubernetes-a-cloud-native-v-praxi-adam-hamsik/">show notes</a> ·
-          <a href="https://open.spotify.com/episode/6CSLIFHB2Itqut2RAJy1gl">Spotify</a></span>
+          <span class="year">2020</span>
+          <a class="title" href="https://www.youtube.com/watch?v=KrHqxKvpf3k">Kubernetes a Cloud native v praxi</a>
+          <span class="meta"><span class="tag">Podcast</span> Websupport podcast with Fero Volár · Nov 2020 · <a href="https://www.websupport.sk/blog/2020/11/podcast-kubernetes-a-cloud-native-v-praxi-adam-hamsik/">show notes</a> · <a href="https://open.spotify.com/episode/6CSLIFHB2Itqut2RAJy1gl">Spotify</a></span>
         </li>
       </ul>
     </section>
 
     <section>
       <h2>Press</h2>
-      <ul class="entries">
+      <ul class="timeline">
         <li>
-          <a href="https://www.startitup.sk/hamsik-z-labyrinth-labs-s-trzbami-88-miliona-eur-riesime-problem-ktory-trapi-firmy-napriec-celou-europou/">Riešime problém, ktorý trápi firmy naprieč celou Európou</a>
-          <span>Startitup interview · Apr 2026</span>
+          <span class="year">2026</span>
+          <a class="title" href="https://www.startitup.sk/hamsik-z-labyrinth-labs-s-trzbami-88-miliona-eur-riesime-problem-ktory-trapi-firmy-napriec-celou-europou/">Riešime problém, ktorý trápi firmy naprieč celou Európou</a>
+          <span class="meta"><span class="tag">Interview</span> Startitup · Apr 2026</span>
         </li>
         <li>
-          <a href="https://www.forbes.sk/koniec-pretvarky-slovenska-firma-zaviedla-no-bullshit-kulturu-rusi-ovocne-dni/">Šéf je síce idiot, ale tu máš banán. Firmy skrývajú za benefity svoj nezáujem o zamestnancov</a>
-          <span>Forbes Slovakia, on the Labyrinth Labs #nobullshit culture</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.forbes.sk/koniec-pretvarky-slovenska-firma-zaviedla-no-bullshit-kulturu-rusi-ovocne-dni/">Šéf je síce idiot, ale tu máš banán. Firmy skrývajú za benefity svoj nezáujem o zamestnancov</a>
+          <span class="meta"><span class="tag">Article</span> Forbes Slovakia, on the Labyrinth Labs #nobullshit culture</span>
         </li>
       </ul>
     </section>
 
     <section>
       <h2>Slides</h2>
-      <ul class="entries">
+      <ul class="timeline compact">
         <li>
-          <a href="https://www.slideshare.net/slideshow/aws-summit-2019-running-kubernetes/147910901">Running Kubernetes on AWS</a>
-          <span>AWS Summit · 2019</span>
+          <span class="year">2019</span>
+          <a class="title" href="https://www.slideshare.net/slideshow/aws-summit-2019-running-kubernetes/147910901">Running Kubernetes on AWS</a>
+          <span class="meta"><span class="tag">Deck</span> AWS Summit</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/monitoring-with-prometheus-at-scale-238793683/238793683">Monitoring with Prometheus at scale</a>
-          <span>SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/monitoring-with-prometheus-at-scale-238793683/238793683">Monitoring with Prometheus at scale</a>
+          <span class="meta"><span class="tag">Deck</span> SlideShare</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/cncf-event-driven-autoscaling-with-keda-243421188/243421188">Event-driven autoscaling with KEDA</a>
-          <span>CNCF meetup · SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/cncf-event-driven-autoscaling-with-keda-243421188/243421188">Event-driven autoscaling with KEDA</a>
+          <span class="meta"><span class="tag">Deck</span> CNCF meetup</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/ingress-controller-present-past-and-future-243421334/243421334">Ingress controller: past, present and future</a>
-          <span>SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/ingress-controller-present-past-and-future-243421334/243421334">Ingress controller: past, present and future</a>
+          <span class="meta"><span class="tag">Deck</span> SlideShare</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/comparison-of-existing-cni-plugins-for-kubernetes/236919706">Comparison of existing CNI plugins for Kubernetes</a>
-          <span>SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/comparison-of-existing-cni-plugins-for-kubernetes/236919706">Comparison of existing CNI plugins for Kubernetes</a>
+          <span class="meta"><span class="tag">Deck</span> SlideShare</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/staying-out-oftroublewithk8sonaws/132413350">Staying out of trouble with Kubernetes on AWS</a>
-          <span>SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/staying-out-oftroublewithk8sonaws/132413350">Staying out of trouble with Kubernetes on AWS</a>
+          <span class="meta"><span class="tag">Deck</span> SlideShare</span>
         </li>
         <li>
-          <a href="https://www.slideshare.net/slideshow/kubernetes-pixel/132413348">Kubernetes @ Pixel Federation</a>
-          <span>SlideShare</span>
+          <span class="year"></span>
+          <a class="title" href="https://www.slideshare.net/slideshow/kubernetes-pixel/132413348">Kubernetes @ Pixel Federation</a>
+          <span class="meta"><span class="tag">Deck</span> SlideShare</span>
         </li>
       </ul>
     </section>
@@ -345,14 +413,15 @@
         Add articles here, newest first. One <li> per post:
 
         <li>
-          <a href="https://example.com/post-url">Post title</a>
-          <span>Where it was published · Mon YYYY</span>
+          <span class="year">YYYY</span>
+          <a class="title" href="https://example.com/post-url">Post title</a>
+          <span class="meta"><span class="tag">Article</span> Where it was published · Mon YYYY</span>
         </li>
 
         Local posts can live in this repo as HTML files under /posts/ and be linked relatively,
         e.g. href="posts/2026-11-my-post.html".
       -->
-      <ul class="entries">
+      <ul class="timeline">
         <li class="empty">Nothing published here yet.</li>
       </ul>
     </section>

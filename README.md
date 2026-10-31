@@ -1,2 +1,2 @@
 # haad.github.com
-personal jekyll page
+personal page, plain static HTML served at https://haad.github.io/

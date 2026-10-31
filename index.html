@@ -1,1 +1,292 @@
-<h1>PAGE on internet !!!</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam Hamšík</title>
+  <meta name="description" content="Adam Hamšík: DevOps engineer, builder, co-founder and CEO of Labyrinth Labs. Side projects, talks, podcasts and writing.">
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --fg: #1a1a1a;
+      --muted: #6b6b66;
+      --line: #e3e3de;
+      --card: #ffffff;
+      --accent: #2f6f4e;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161c20;
+        --fg: #ececea;
+        --muted: #9a9f9a;
+        --line: #2a3238;
+        --card: #1d252a;
+        --accent: #ddfb86;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 17px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 72px 16px 48px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(220px, 300px) 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+    .portrait {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    .bio { max-width: 640px; }
+    .bio p { margin: 0 0 16px; }
+    .bio a { color: inherit; text-decoration-color: var(--accent); }
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 4px;
+      letter-spacing: -0.01em;
+    }
+    .lede { color: var(--muted); font-size: 1.15rem; }
+    @media (max-width: 640px) {
+      header { grid-template-columns: 1fr; gap: 24px; }
+      .portrait { max-width: 260px; }
+    }
+
+    section + section { margin-top: 56px; }
+    h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+
+    /* Projects: cards in a grid */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .project {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+    .project:hover, .project:focus-visible { border-color: var(--accent); outline: none; }
+    .project strong { font-size: 1.1rem; margin-bottom: 6px; }
+    .project span { color: var(--muted); flex: 1; }
+    .project small { margin-top: 12px; color: var(--accent); font-size: 0.85rem; }
+
+    /* Talks, press, slides, writing: two-column entry lists */
+    .entries {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px 40px;
+    }
+    .entries li { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .entries a { color: var(--fg); font-weight: 600; text-decoration: none; }
+    .entries a:hover, .entries a:focus-visible { color: var(--accent); }
+    .entries span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+    .entries span a { font-weight: 400; color: var(--muted); text-decoration: underline; }
+    .empty { color: var(--muted); font-style: italic; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: inherit; }
+    footer a + a { margin-left: 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img class="portrait" src="img/adam.jpg" alt="Adam Hamšík leaning on a wooden table in front of a glass-block wall" width="899" height="1200">
+      <div class="bio">
+        <h1>Adam Hamšík</h1>
+        <p class="lede">DevOps engineer at heart and, above all, a builder.</p>
+        <p>
+          I'm the co-founder and CEO of <a href="https://lablabs.io">Labyrinth Labs</a>, a company
+          built on engineering excellence, an open-source mindset and a #nobullshit culture. Together
+          with my co-founders I built a team of DevOps, Platform, Business and People specialists and
+          a business model centred on our cloud-native platform, LARA.
+        </p>
+        <p>
+          Today I focus mainly on company strategy and leadership, while still enjoying technical
+          discussions and pragmatic solutions to real problems. As a mentor at Startup Awards Slovakia
+          I help startups stay focused, make smart decisions and grow in meaningful ways.
+        </p>
+        <p>
+          I care about open source and about creating an environment where talented people can do
+          great work without unnecessary corporate baggage. Below are the side projects I maintain
+          in public, plus talks, podcasts and press.
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <h2>Projects</h2>
+      <ul class="projects">
+        <li>
+          <a class="project" href="https://haad.github.io/sk_elections/">
+            <strong>Slovak Election Poll Analysis</strong>
+            <span>Seat projections for the Slovak parliament from current polling, using a tuned
+            Hagenbach-Bischoff model with trend analysis. Polls are scraped and the page is rebuilt automatically.</span>
+            <small>haad.github.io/sk_elections</small>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://haad.github.io/CoA-expansion-set/">
+            <strong>Avel Nights</strong>
+            <span>Table-side companion for the board game Chronicles of Avel: random round events and
+            optional quests that add replay value without any new printed components.</span>
+            <small>haad.github.io/CoA-expansion-set</small>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://haad.github.io/Clipsmith/">
+            <strong>Clipsmith</strong>
+            <span>Keyboard-first clipboard history, code snippets, AI prompt library and offline
+            documentation browser for macOS. Native Swift, open source.</span>
+            <small>haad.github.io/Clipsmith</small>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Talks &amp; podcasts</h2>
+      <ul class="entries">
+        <li>
+          <a href="https://ocamihr.podbean.com/e/97-ako-sa-zije-v-no-bullshit-culture/">Ako sa žije (v) No Bullshit Culture</a>
+          <span>Očami HR podcast, #97 · Oct 2026</span>
+        </li>
+        <li>
+          <a href="https://nobullshit.camp/">#nobullshit.camp 2026, opening</a>
+          <span>Cloud &amp; DevOps conference by Labyrinth Labs, Nová Cvernovka, Bratislava · Sep 2026</span>
+        </li>
+        <li>
+          <a href="https://www.stream.cz/rozhovory-o-robotice/firma-bez-investoru-vyrostla-na-30-lidi-klicem-bylo-prestat-prodavat-hodiny-prace-rika-adam-hamsik-65536587">Firma bez investorů vyrostla na 30 lidí. Klíčem bylo přestat prodávat hodiny práce</a>
+          <span>FocusOn rozhovory with Jiří Jemelka, Stream.cz · Jul 2026</span>
+        </li>
+        <li>
+          <a href="https://community2.cncf.io/events/details/cncf-kcd-czech-slovak-presents-kcd-kubernetes-community-days-2022-czech-slovak-virtual/">Kubernetes Community Days Czech &amp; Slovak 2022</a>
+          <span>Speaker and panelist, virtual · Apr 2022</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=AZuMLZfaW58">Čo je CI/CD proces a prečo ho vo firme chcete</a>
+          <span>Tech Talks with Fero Volár, YouTube · May 2021</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=KrHqxKvpf3k">Kubernetes a Cloud native v praxi</a>
+          <span>Websupport podcast with Fero Volár · Nov 2020 ·
+          <a href="https://www.websupport.sk/blog/2020/11/podcast-kubernetes-a-cloud-native-v-praxi-adam-hamsik/">show notes</a> ·
+          <a href="https://open.spotify.com/episode/6CSLIFHB2Itqut2RAJy1gl">Spotify</a></span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Press</h2>
+      <ul class="entries">
+        <li>
+          <a href="https://www.startitup.sk/hamsik-z-labyrinth-labs-s-trzbami-88-miliona-eur-riesime-problem-ktory-trapi-firmy-napriec-celou-europou/">Riešime problém, ktorý trápi firmy naprieč celou Európou</a>
+          <span>Startitup interview · Apr 2026</span>
+        </li>
+        <li>
+          <a href="https://www.forbes.sk/koniec-pretvarky-slovenska-firma-zaviedla-no-bullshit-kulturu-rusi-ovocne-dni/">Šéf je síce idiot, ale tu máš banán. Firmy skrývajú za benefity svoj nezáujem o zamestnancov</a>
+          <span>Forbes Slovakia, on the Labyrinth Labs #nobullshit culture</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Slides</h2>
+      <ul class="entries">
+        <li>
+          <a href="https://www.slideshare.net/slideshow/aws-summit-2019-running-kubernetes/147910901">Running Kubernetes on AWS</a>
+          <span>AWS Summit · 2019</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/monitoring-with-prometheus-at-scale-238793683/238793683">Monitoring with Prometheus at scale</a>
+          <span>SlideShare</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/cncf-event-driven-autoscaling-with-keda-243421188/243421188">Event-driven autoscaling with KEDA</a>
+          <span>CNCF meetup · SlideShare</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/ingress-controller-present-past-and-future-243421334/243421334">Ingress controller: past, present and future</a>
+          <span>SlideShare</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/comparison-of-existing-cni-plugins-for-kubernetes/236919706">Comparison of existing CNI plugins for Kubernetes</a>
+          <span>SlideShare</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/staying-out-oftroublewithk8sonaws/132413350">Staying out of trouble with Kubernetes on AWS</a>
+          <span>SlideShare</span>
+        </li>
+        <li>
+          <a href="https://www.slideshare.net/slideshow/kubernetes-pixel/132413348">Kubernetes @ Pixel Federation</a>
+          <span>SlideShare</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <!--
+        Add articles here, newest first. One <li> per post:
+
+        <li>
+          <a href="https://example.com/post-url">Post title</a>
+          <span>Where it was published · Mon YYYY</span>
+        </li>
+
+        Local posts can live in this repo as HTML files under /posts/ and be linked relatively,
+        e.g. href="posts/2026-11-my-post.html".
+      -->
+      <ul class="entries">
+        <li class="empty">Nothing published here yet.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <a href="https://github.com/haad">GitHub</a>
+      <a href="https://www.linkedin.com/in/adam-hamsik">LinkedIn</a>
+      <a href="https://www.slideshare.net/AdamHamsik">SlideShare</a>
+      <a href="https://lablabs.io">Labyrinth Labs</a>
+    </footer>
+  </main>
+</body>
+</html>

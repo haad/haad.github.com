@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adam Hamšík</title>
   <meta name="description" content="Adam Hamšík: DevOps engineer, builder, co-founder and CEO of Labyrinth Labs. Side projects, talks, podcasts and writing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
+      --sans: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --display: "Sora", var(--sans);
+      --mono: "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       --bg: #fafaf8;
       --fg: #1a1a1a;
       --muted: #6b6b66;
       --line: #e3e3de;
       --card: #ffffff;
       --accent: #2f6f4e;
+      --accent-text: #2f6f4e;
+      --cta-bg: #eef6ea;
       color-scheme: light dark;
     }
     @media (prefers-color-scheme: dark) {
@@ -23,6 +31,8 @@
         --line: #2a3238;
         --card: #1d252a;
         --accent: #ddfb86;
+        --accent-text: #ddfb86;
+        --cta-bg: #1f2a22;
       }
     }
     * { box-sizing: border-box; }
@@ -30,7 +40,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--fg);
-      font: 17px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      font: 17px/1.55 var(--sans);
       -webkit-font-smoothing: antialiased;
     }
     main {
@@ -55,6 +65,7 @@
     .bio p { margin: 0 0 16px; }
     .bio a { color: inherit; text-decoration-color: var(--accent); }
     h1 {
+      font-family: var(--display);
       font-size: 2.2rem;
       margin: 0 0 4px;
       letter-spacing: -0.01em;
@@ -67,11 +78,51 @@
 
     section + section { margin-top: 56px; }
     h2 {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--line);
+    }
+    .cta {
+      padding: 36px 40px;
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      background: var(--cta-bg);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .cta blockquote {
       margin: 0 0 18px;
+      font-family: var(--display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      max-width: 680px;
+    }
+    .cta blockquote em { font-style: normal; color: var(--accent-text); }
+    .cta p { margin: 0; color: var(--fg); max-width: 680px; font-size: 1.02rem; }
+    .cta p a { color: inherit; text-decoration-color: var(--accent); }
+    .button {
+      display: inline-block;
+      font-family: var(--display);
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .button:hover, .button:focus-visible { opacity: 0.88; outline: none; }
+    @media (max-width: 640px) {
+      .cta { grid-template-columns: 1fr; padding: 28px 22px; }
+      .cta blockquote { font-size: 1.2rem; }
     }
     ul { list-style: none; margin: 0; padding: 0; }
 
@@ -94,9 +145,9 @@
       transition: border-color 0.15s;
     }
     .project:hover, .project:focus-visible { border-color: var(--accent); outline: none; }
-    .project strong { font-size: 1.1rem; margin-bottom: 6px; }
+    .project strong { font-family: var(--display); font-size: 1.1rem; margin-bottom: 6px; }
     .project span { color: var(--muted); flex: 1; }
-    .project small { margin-top: 12px; color: var(--accent); font-size: 0.85rem; }
+    .project small { margin-top: 12px; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; }
 
     /* Talks, press, slides, writing: two-column entry lists */
     .entries {
@@ -110,7 +161,8 @@
     .entries span {
       display: block;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
       margin-top: 2px;
     }
     .entries span a { font-weight: 400; color: var(--muted); text-decoration: underline; }
@@ -121,7 +173,8 @@
       padding-top: 20px;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
     }
     footer a { color: inherit; }
     footer a + a { margin-left: 16px; }
@@ -137,18 +190,22 @@
         <p>
           I'm the co-founder and CEO of <a href="https://lablabs.io">Labyrinth Labs</a>, a company
           built on engineering excellence, an open-source mindset and a #nobullshit culture. Together
-          with my co-founders I built a team of DevOps, Platform, Business and People specialists and
+          with my co-founders I built a team of DevOps, Platform, Business and People specialists, and
           a business model centred on our cloud-native platform, LARA.
         </p>
         <p>
-          Today I focus mainly on company strategy and leadership, while still enjoying technical
-          discussions and pragmatic solutions to real problems. As a mentor at Startup Awards Slovakia
-          I help startups stay focused, make smart decisions and grow in meaningful ways.
+          Today I spend most of my time on strategy and leading the company, but I still enjoy a deep
+          technical debate and a pragmatic fix for a real problem.
         </p>
         <p>
-          I care about open source and about creating an environment where talented people can do
-          great work without unnecessary corporate baggage. Below are the side projects I maintain
-          in public, plus talks, podcasts and press.
+          I believe in building things that last. A company has more in common with an orchard than
+          with a machine: you plant it, you don't assemble it. It takes years before it bears fruit,
+          it has to survive droughts and storms, and the trees that grow well are the ones that shelter
+          each other. I try to run Labyrinth Labs the same way, with people who help each other grow
+          and a product, LARA, that compounds year over year instead of being rebuilt every season.
+        </p>
+        <p>
+          Below are the side projects I maintain in public, plus talks, podcasts and press.
         </p>
       </div>
     </header>
@@ -181,6 +238,25 @@
           </a>
         </li>
       </ul>
+    </section>
+
+    <section id="mentoring">
+      <h2>Mentoring</h2>
+      <div class="cta">
+        <div>
+          <blockquote>Product and engineering culture are inseparable: <em>you can't build something
+          people love inside a company people want to leave.</em></blockquote>
+          <p>
+            I mentor founders and engineering leads through Startup Awards Slovakia,
+            <a href="https://growni.sk/mentor/adam-hamsik">Growni</a> and the
+            <a href="https://techfellows.io/">TechFellows</a> community on cloud architecture, hiring the
+            first engineers, pricing technical work and staying focused. If you're building a company,
+            launching a startup or standing up a platform team, I'm happy to talk.
+            Honest feedback, no magic shortcuts.
+          </p>
+        </div>
+        <a class="button" href="https://www.linkedin.com/in/adam-hamsik">Get in touch</a>
+      </div>
     </section>
 
     <section>
